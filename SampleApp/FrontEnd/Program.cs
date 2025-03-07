@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+builder.AddServiceDefaults();
+
 builder.Services.AddHttpClient<WeatherForecastClient>(c =>
 {
     var url = builder.Configuration["WEATHER_URL"] 
@@ -20,7 +22,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
-
+app.MapDefaultEndpoints();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
